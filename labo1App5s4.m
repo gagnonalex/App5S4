@@ -113,11 +113,11 @@ zplane([conj(z1); conj(z2)], [conj(p1); conj(p2)]);
 signalRand = randn(1,8000);
 h = [p1 p2 ; z1 z2];
 
-z = [z1 z2];
-p = [p1 p2];
+z = [z1 z2]
+p = [p1 p2]
 
-a = poly(p);
-b = poly (z);
+a = poly(p)
+b = poly (z)
 figure
 zplane(b,a);
 

@@ -1,17 +1,39 @@
 close all
 clear all
-%% filtre app
-
+clc
 zeros = [1 -3.914 7.643 -9.551 8.717 -5.637 2.074];
-pole = [1 0.3696 0.04];
-zplane(pole,zeros)
+pole = [1 0.3696 0.04 ];
+%% filtre app , comme on inverse filtre de depart alors
 
-x = audioread('phrase_malentendant_bruite.wav');
-y = filter(pole, zeros, x);
+zi = pole;
+pi = zeros;
+figure('name','zplane initial')
+zplane(zi,pi)
 
-figure('','')
-freqz(y);
-plot(y);
+[x,fe] = audioread('phrase_malentendant_bruite.wav');
+yi = filter(zi, pi, x);
 
-%filtre passe tout
+figure('name','freqz')
+freqz(zi,pi);
+figure('name','plot')
+plot(yi);
 
+%% filtre passe tout
+
+%nospoles
+z = (roots(pi))'%on trouve les poles avec roots et on les met comme zero de notre filtre passe tout
+
+p = [ abs(1/abs(z(1))) 1/abs(z(2)) 1/abs(z(3)) 1/abs(z(4)) 1/abs(z(5)()]
+
+
+
+figure('name','filtre passe toutc plane')
+zplane(z,p);
+% ypt = filter(z, p, x)
+ figure('name','filtre passe tout freqz')
+freqz(z,p);
+% 
+% %% application du filtre passe tout au filtre non stable
+% 
+% %fstable = 
+% 
