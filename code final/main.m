@@ -148,10 +148,17 @@ plot(s_debruitrer,'b');
 hold off
 
 % RSB
-[RSBRIF4, RSBRIF4Trapeze, RSBRIF4Simpson] = RSB_calculator(s_debruiterRIF4)
-[RSBRIF8, RSBRIF8Trapeze, RSBRIF8Simpson] = RSB_calculator(s_debruiterRIF8)
-[RSBRIF16, RSBRIF16Trapeze, RSBRIF16Simpson] = RSB_calculator(s_debruiterRIF16)
-[RSBRII, RSBRIITrapeze, RSBRIISimpson] = RSB_calculator(s_debruiterRII)
+[RSBRIF4, RSBRIF4Trapeze, RSBRIF4Simpson] = RSB_calculator(s_debruiterRIF4, 'Filtre RIF 4 bandes')
+[RSBRIF8, RSBRIF8Trapeze, RSBRIF8Simpson] = RSB_calculator(s_debruiterRIF8, 'Filtre RIF 8 bandes')
+[RSBRIF16, RSBRIF16Trapeze, RSBRIF16Simpson] = RSB_calculator(s_debruiterRIF16, 'Filtre RIF 16 bandes')
+[RSBRII, RSBRIITrapeze, RSBRIISimpson] = RSB_calculator(s_debruiterRII, 'Filtre RII')
+
+% Creation des fichiers audio
+audiowrite('RIF4.wav',s_debruiterRIF4,fe);
+audiowrite('RIF8.wav',s_debruiterRIF8,fe);
+audiowrite('RIF16.wav',s_debruiterRIF16,fe);
+audiowrite('RII.wav',s_debruiterRII,fe);
+
 
 % soundsc(s_debruiterRIF4,fe);
 % pause(4);
