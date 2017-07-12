@@ -11,7 +11,7 @@ for i = 1: nmb_division
     
     if(i == 1)
         debut = 1;
-        fin = debut+div+1;
+        fin = debut+div;
         
     elseif(i == nmb_division)
            fin = length(RIF)/2;
@@ -31,14 +31,20 @@ end
 
 for i = 1: nmb_division
     
-    debut = N - div*i+1;
-    fin = debut + div-1;
+    debut = N - div*i;
+    
+    if(i~=1)
+      debut = debut +1;  
+    end
+    
+    fin = debut + div;
     
     allo =module_filtre(debut:fin);
     moy =  mean(allo);
     
     debut_array = N*2 - div*(nmb_division-i+1) +1;
-    RIF(debut_array:debut_array + div) =moy;    
+    fin_array = debut_array + div-1;
+    RIF(debut_array:fin_array) =moy;    
     
 
 end
